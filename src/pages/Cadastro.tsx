@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 interface CadastroForm {
     name: string;
+    email: string;
     cpf: string;
     placa: string;
 }
@@ -12,6 +13,7 @@ export default function Cadastro() {
     const navigate = useNavigate()
     const [form, setForm] = useState<CadastroForm>({
         name: "",
+        email: "",
         cpf: "",
         placa: "",
     });
@@ -27,12 +29,12 @@ export default function Cadastro() {
         e.preventDefault();
 
         console.log(form)
-        
+
         try {
             const response = await AXIOS.post("/cadastrar", form);
             console.log(response.data);
             alert("Motorista cadastrado com sucesso!");
-            setForm({ name: "", cpf: "", placa: "" });
+            setForm({ name: "",email: "", cpf: "", placa: "" });
             // navigate('/')
         } catch (error) {
             console.error(error);
@@ -53,6 +55,15 @@ export default function Cadastro() {
                         name="name"
                         placeholder="Nome"
                         value={form.name}
+                        onChange={handleChange}
+                        className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="email"
+                        value={form.email}
                         onChange={handleChange}
                         className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required

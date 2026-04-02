@@ -37,19 +37,19 @@ const Home = () => {
         <div className="flex justify-center items-center flex-col p-15 gap-10">
             <a href="/cadastro" className="rounded bg-blue-600 p-2 font-bold">Cadastrar Motorista</a>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {motorista.map((item) => (
+                {motorista.length > 0 && motorista?.map((item) => (
                     <div
                         key={item.user_id}
-                        className="flex flex-col p-6 rounded-xl shadow-lg "
+                        className="flex flex-col  p-6 rounded-xl shadow-lg "
                     >
                         <div className="flex flex-col gap-2">
                             <h2 className="text-xl font-bold text-gray-900">{item.user_nome}</h2>
                             <p className="text-gray-700 font-mono">{item.user_cpf}</p>
-                            {item.veiculos && item.veiculos.length > 0 && (
+                            {item.veiculos && item.veiculos?.length > 0 && (
                                 <div className="mt-2">
                                     <h4 className="font-semibold text-gray-800">Veículos:</h4>
                                     <ul className="list-disc list-inside text-gray-700">
-                                        {item.veiculos.map((v) => (
+                                        {item.veiculos?.map((v) => (
                                             <li key={v.veiculo_id}>{v.veiculo_placa}</li>
                                         ))}
                                     </ul>
